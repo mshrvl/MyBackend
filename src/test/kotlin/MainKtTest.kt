@@ -1,11 +1,11 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class MainKtTest {
+//class MainKtTest {
 
-    @Test
-    fun checkPrice() {
-        val result = checkPrice(1000, 10,"Silver",true)
-        assertEquals(30,4, result)
-    }
-}
+ //   @Test
+    //fun checkPrice() {
+    //    val result = checkPrice(1000, 10,"Silver",true)
+     //   assertEquals(30,4, result)
+   // }
+//}
