@@ -1,10 +1,26 @@
-
-
-fun main() {
+class Customer(var totalPoints: Int = 0) {
+    fun placeOrder(price: Int, discount: Int, level: String, newUser: Boolean) {
+    val orderCashback = checkPrice(price, discount, level, newUser)
+    totalPoints += orderCashback
+    println("Total points for the customer: $totalPoints")
+}
+}
+private fun main() {
 val result = checkPrice(1000,5,"Silver",false)
-    println(result)
+    val totalPoints = calculateTotalPoints(90,50)
+    println("Сумма ваших баллов:" + totalPoints)
+
+    val customer = Customer(0)
+
+    customer.placeOrder(1000,5,"Silver", true)
+    customer.placeOrder(699,5,"Silver", false)
+
 
 }
+fun calculateTotalPoints(previousPoints: Int, latestOrderCashback: Int): Int {
+    return previousPoints + latestOrderCashback
+}
+
 
 
 fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int {
@@ -22,6 +38,9 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int 
     } else {
         totalPrice / 100 * cashback
     }
+
+    val totalPointsOfCustomer = 0 + totalPointsForOrder
+
 
     println("Сумма кешбека составит $totalPointsForOrder")
     println("Сумма заказа $totalPrice")
