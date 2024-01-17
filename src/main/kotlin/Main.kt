@@ -1,10 +1,13 @@
 
 
 fun main() {
-val result = checkPrice(1000,5,"Silver",true)
+val result = checkPrice(1000,5,"Silver",false)
+    println(result)
+
 }
 
-fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean) {
+
+fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int {
     val totalPrice = price - discount
 
     val cashback = when (level) {
@@ -19,11 +22,15 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean) {
     } else {
         totalPrice / 100 * cashback
     }
+
     println("Сумма кешбека составит $totalPointsForOrder")
     println("Сумма заказа $totalPrice")
 
+    return totalPointsForOrder
+
 
 }
+
 //добавить логику баланса кешбека пользователя
 //добавить логику списания баллов пользователя
 //добавить автоматазацию процесса получения статуса клиента, покупки на 5000 бронзовый, на 10к - серебро, на 20к золото
