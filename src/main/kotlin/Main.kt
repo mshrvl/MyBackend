@@ -80,7 +80,7 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int 
 
     val totalSum = 0 + totalPrice;
 
-
+//
 
     val totalPointsForOrder = if (newUser) {
         totalPrice / 100 * cashback + 500
