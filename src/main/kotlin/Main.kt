@@ -1,10 +1,24 @@
-class Customer(var totalPoints: Int = 0) {
+class Customer(var totalPoints: Int = 0, var cashbackBalance: Int = 0, var redeemedPoints: Int = 0) {
     fun placeOrder(price: Int, discount: Int, level: String, newUser: Boolean) {
-    val orderCashback = checkPrice(price, discount, level, newUser)
-    totalPoints += orderCashback
-    println("Total points for the customer: $totalPoints")
-}
-}
+        val orderCashback = checkPrice(price, discount, level, newUser)
+        cashbackBalance += orderCashback
+        println("Сумма баллов: $cashbackBalance")
+    }
+        fun redeemPoints(pointsToRedeem: Int) {
+            if (pointsToRedeem <= totalPoints) {
+                totalPoints -= pointsToRedeem
+                cashbackBalance -= pointsToRedeem / 2
+                totalPoints -= pointsToRedeem
+                redeemedPoints += pointsToRedeem
+                println("успешно списано $pointsToRedeem .")
+                println("Остаток баллов на клиентском счете: $cashbackBalance")
+            } else {
+                println("Невозможно списать данное количество баллов.")
+            }
+        }
+    }
+
+
 private fun main() {
 val result = checkPrice(1000,5,"Silver",false)
     val totalPoints = calculateTotalPoints(90,50)
@@ -14,6 +28,8 @@ val result = checkPrice(1000,5,"Silver",false)
 
     customer.placeOrder(1000,5,"Silver", true)
     customer.placeOrder(699,5,"Silver", false)
+
+    customer.redeemPoints(200)
 
 
 }
@@ -33,7 +49,11 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int 
         else -> 0
     }
 
-    val totalPointsForOrder = if(newUser) {
+    val totalSum = 0 + totalPrice;
+
+
+
+    val totalPointsForOrder = if (newUser) {
         totalPrice / 100 * cashback + 500
     } else {
         totalPrice / 100 * cashback
@@ -47,10 +67,6 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int 
 
     return totalPointsForOrder
 
-
 }
-
-//добавить логику баланса кешбека пользователя
-//добавить логику списания баллов пользователя
 //добавить автоматазацию процесса получения статуса клиента, покупки на 5000 бронзовый, на 10к - серебро, на 20к золото
 // добавлен стейдж
