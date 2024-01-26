@@ -12,10 +12,6 @@ class Customer(var totalPoints: Int = 0, var cashbackBalance: Int = 0, var spent
         val result = checkPrice(purchaseAmount, 0, status, newUser)
         totalPoints += result
         cashbackBalance += result
-
-        println("Total points for the customer: $totalPoints")
-        println("Cashback balance: $cashbackBalance")
-        println("Customer status: $status")
     }
 
     fun redeemPoints(pointsToRedeem: Int) {
