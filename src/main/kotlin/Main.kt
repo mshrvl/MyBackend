@@ -1,3 +1,4 @@
+
 class Customer(var totalPoints: Int = 0, var cashbackBalance: Int = 0, var spentPoints: Int = 0) {
     var status: String = "Bronze"
 
@@ -13,9 +14,6 @@ class Customer(var totalPoints: Int = 0, var cashbackBalance: Int = 0, var spent
         totalPoints += result
         cashbackBalance += result
 
-        println("Total points for the customer: $totalPoints")
-        println("Cashback balance: $cashbackBalance")
-        println("Customer status: $status")
     }
 
     fun redeemPoints(pointsToRedeem: Int) {
@@ -24,13 +22,13 @@ class Customer(var totalPoints: Int = 0, var cashbackBalance: Int = 0, var spent
             spentPoints += pointsToRedeem
             cashbackBalance -= pointsToRedeem / 2
             updateStatus()
-            println("Redeemed $pointsToRedeem points successfully.")
-            println("Remaining total points: $totalPoints")
+            println("Списано $pointsToRedeem баллов.")
+            println("Оставшееся количество баллов: $totalPoints")
             println("Spent points: $spentPoints")
-            println("Updated cashback balance: $cashbackBalance")
-            println("Customer status: $status")
+            println("Ваш баланс: $cashbackBalance")
+            println("Статус участника программы лояльности $status")
         } else {
-            println("Insufficient points to redeem.")
+            println("Некорректное количество баллов.")
         }
     }
 
@@ -46,12 +44,12 @@ class Customer(var totalPoints: Int = 0, var cashbackBalance: Int = 0, var spent
 fun main() {
     val customer = Customer()
 
-    println("Welcome! Are you a new user? (true/false)")
+    println("Вы новый пользователь? (true/false)")
     val newUserInput = readLine()?.toBoolean() ?: false
 
     customer.placeOrder(newUserInput)
 
-    println("Do you want to redeem points? (true/false)")
+    println("Вы хотите списать баллы? (true/false)")
     val redeemOption = readLine()?.toBoolean() ?: false
 
     if (redeemOption) {
@@ -60,13 +58,6 @@ fun main() {
         customer.redeemPoints(pointsToRedeem)
     }
 }
-
-
-fun calculateTotalPoints(previousPoints: Int, latestOrderCashback: Int): Int {
-    return previousPoints + latestOrderCashback
-}
-
-
 
 fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int {
     val totalPrice = price - discount
@@ -88,7 +79,6 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int 
         totalPrice / 100 * cashback
     }
 
-    val totalPointsOfCustomer = 0 + totalPointsForOrder
 
 
     println("Сумма кешбека составит $totalPointsForOrder")
@@ -97,5 +87,15 @@ fun checkPrice(price: Int, discount: Int, level: String, newUser: Boolean): Int 
     return totalPointsForOrder
 
 }
-//добавить автоматазацию процесса получения статуса клиента, покупки на 5000 бронзовый, на 10к - серебро, на 20к золото
-// добавлен стейдж
+
+class Seller(var card: Boolean = true, var cash: Boolean = true) {
+
+    fun canPayByCard() {
+        if (card) {
+            println("Доступна оплата по терминалу")
+        } else {
+            println("Оплата по терминалу недоступна")
+        }
+    }
+    var canUseCard = canPayByCard()
+}
